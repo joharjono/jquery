@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ==== Jquery CDN ==== -->
+    <script src="src/jquery.js"></script>
+    <title>Learn Basic Food & drink</title>
+  </head>
+  <body>
+    <a id="btn-reload">Next</a>
+    <div class="container">
+      <img
+        src="https://source.unsplash.com/random/300x200/?food"
+        alt="unsplas random"
+      />
+      <h3>Random Foods</h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
+        laudantium, facere optio aspernatur harum ex. Enim, incidunt
+        perspiciatis ipsa.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor libero
+        nisi animi dignissimos excepturi optio iste, quod expedita cum aliquid,
+        tempore molestias ipsam impedit illum et debitis quos tenetur esse.
+        Ipsam, officia labore fuga alias, quaerat maxime provident beatae
+        sapiente unde harum quia aperiam rerum facere quo ad tempore? Beatae
+        natus corporis quasi hic minima doloribus soluta fugiat dolore aliquam.
+      </p>
+
+      <div class="btn-wrap">
+        <button id="food">Food</button>
+        <button id="drink">Drink</button>
+      </div>
+    </div>
+
+    <!-- seript -->
+    <script>
+      // untuk memastikan bahwa kode JavaScript hanya dijalankan setelah diload(dimuat) kode html nya.
+      $(document).ready(function () {
+        console.log("document selesai dimuat");
+
+        // selection tag
+        $("body").css("display", "flex");
+        $("body").css("justify-content", "center");
+        $("body").css("flex-direction", "column");
+        $("body").css("align-items", "center");
+        $("body").css("height", "100vh");
+        $("body").css("margin", "4rem 4rem");
+
+        $(".container").css("border", "2px solid #000");
+        $(".container").css("background", "#f0f2f0");
+        $(".container").css("max-width", "40rem");
+        $(".container>*").css("margin", "20px");
+        $(".container>*").css("line-height", "1.6");
+
+        $(".container").css("display", "grid");
+        $(".container").css("grid-template-columns", "1fr 1fr");
+        $(".container").css("grid-template-rows", "1fr 1fr");
+
+        // $("h3").css("grid-colum", "2");
+        // $("img").css("grid-colum", "1");
+        // $("img").css("grid-row", "1");
+        // $("h3").css("grid-colum", "2");
+        // $("h3").css("grid-row", "1");
+        // $(".container>p").css("grid-colum", "2");
+        // $(".container>p").css("grid-row", "2");
+        // $(".btn-wrap").css("grid-colum", "3");
+        // $(".btn-wrap").css("grid-row", "3");
+
+        $("img").css("grid-column", "1");
+        $("img").css("grid-row", "1");
+
+        $("h3").css({
+          "grid-column": "2",
+          "grid-row": "1",
+          "font-size": "2rem",
+        });
+
+        $(".container > p:first-of-type").css({
+          "grid-column": "2",
+          "grid-row": "1",
+          "margin-top": "5rem",
+        });
+
+        $(".container > p:nth-of-type(2)").css({
+          "grid-column": "1 / span 2",
+          "grid-row": "2",
+        });
+
+        $(".btn-wrap").css({
+          "grid-column": "1",
+          "grid-row": "3",
+          // "margin-top": "10rem",
+        });
+
+        // untuk memastikan bahwa kode JavaScript hanya dijalankan setelah diload(dimuat) kode html nya.
+
+        function checkSize() {
+          if (window.matchMedia("(max-width: 450px)").matches) {
+            // Ubah ke desain mobile jika lebar layar kurang dari atau sama dengan 450px
+            $(".container").css("grid-template-columns", "1fr");
+            $(".container").css("grid-template-rows", "1fr");
+          } else {
+            // Kembalikan ke desain desktop jika lebar layar lebih dari 450px
+            $(".container").css("grid-template-columns", "1fr 1fr");
+            $(".container").css("grid-template-rows", "auto auto");
+          }
+        }
+
+        // Jalankan fungsi checkSize saat dokumen selesai dimuat
+        checkSize();
+
+        // Jalankan fungsi checkSize setiap kali jendela diubah ukurannya
+        $(window).resize(checkSize);
+
+        $("#btn-reload").css("background", "#262626");
+        $("#btn-reload").css("color", "#fff");
+        $("#btn-reload").css("font-size", "1.2rem");
+        $("#btn-reload").css("width", "max-content");
+        $("#btn-reload").css("text-align", "center");
+        $("#btn-reload").css("padding", "10px 40px");
+        $("#btn-reload").css("margin-bottom", "10px");
+        $("#btn-reload").css("font-weight", "bold");
+        $("#btn-reload").css("letter-spacing", "5px");
+        $("#btn-reload").css("cursor", "pointer");
+
+        // event
+        $(".container").mouseenter(function () {
+          // $(".container").css("background", "yellow");
+          // });
+
+          // $("p").mouseenter(function () {
+          //   $(this).css("color", "red");
+          // });
+          //agar no reload and change page
+          // event.preventDefault();
+
+          $("#btn-reload").click(function () {
+            console.log("u click");
+            setTimeout(function () {
+              location.reload();
+            });
+          });
+
+          // set & get value
+          // drink
+          $("#drink").click(function () {
+            $("img").attr(
+              "src",
+              "https://source.unsplash.com/random/300x200/?drink"
+            );
+
+            $("h3").text("Random Drinks");
+          });
+
+          // food
+          $("#food").click(function () {
+            $("img").attr(
+              "src",
+              "https://source.unsplash.com/random/300x200/?food"
+            );
+            $("h3").text("Random Foods");
+          });
+        });
+
+        // set element
+        // $(".container").append("<h1>Inside</h1>");
+        // $(".container").before("<h1>before</h1>");
+        // $(".container").after("<h1>after</h1>");
+
+        // remove and empty
+        // remove element
+        // $("h1").remove();
+        // $("h1").empty();
+      });
+    </script>
+  </body>
+</html>
